@@ -2,20 +2,29 @@
 
 Personal website of Dror Brook — engineering manager, podcaster, writer, and mentor.
 
-## Sections
+It's a single page with a tab bar at the top. **About** is the default tab (a short
+intro / hero); the rest link out to Dror's content:
 
-- **Home** — intro and links out to everything
-- **About** — bio and background
-- **Blogs** — curated links to posts published on Medium, giffgaff, Monzo, etc.
-- **Podcast** — Beyond the Sprint
-- **Talks** — video lectures (Tech Gym, etc.)
-- **Contact** — get in touch, plus a free first mentoring call booked via an external scheduler, and LinkedIn & GitHub
+- **About** — intro and short bio
+- **Blogs** — curated links to posts on Medium
+- **Podcast** — Beyond The Sprint (Spotify + podcast site)
+- **Talks** — video lectures (e.g. Tech Gym), embedded
+- **Contact** — LinkedIn & GitHub, plus a free first mentoring call via an external scheduler
+
+Each tab links to an in-page anchor (`/#blogs`, `/#talks`, …), so tabs are deep-linkable.
 
 ## Content
 
 No CMS. Structured content lives in typed data files under [`data/`](data/) — edit and commit to
-update the site. Adding an article or talk means adding one entry to `data/blogs.ts` /
-`data/talks.ts`. Placeholder values marked `TODO` are swapped for real content before launch.
+update the site:
+
+- `data/site.ts` — name, tagline, socials, scheduler URL, and profile photo path
+- `data/blogs.ts` / `data/talks.ts` — one entry per article / talk
+- `data/podcasts.ts` — the podcast entry
+
+The profile photo lives in [`public/`](public/) (currently `public/profile.jpeg`); point
+`site.photo` at it. A few values are still placeholders marked `TODO` (e.g. the mentoring
+scheduler link) — swap them for real values before launch.
 
 ## Tech stack
 
