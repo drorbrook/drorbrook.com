@@ -1,12 +1,23 @@
 import type { Blog } from "@/data/types";
 
+const MONTHS = [
+  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+];
+
+// Parse date-only ISO strings (YYYY-MM-DD) as calendar components so the label
+// doesn't shift a month in negative-offset timezones (a `new Date("2025-03-01")`
+// is UTC midnight and would render "Feb" in the Americas).
 function formatDate(iso: string): string {
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return "";
-  return d.toLocaleDateString("en-GB", { year: "numeric", month: "short" });
+  const m = /^(\d{4})-(\d{2})(?:-(\d{2}))?/.exec(iso);
+  if (!m) return "";
+  const year = m[1];
+  const month = MONTHS[Number(m[2]) - 1];
+  return month ? `${month} ${year}` : "";
 }
 
 export function BlogCard({ blog }: { blog: Blog }) {
+  const date = formatDate(blog.date);
   return (
     <a
       href={blog.url}
@@ -16,10 +27,10 @@ export function BlogCard({ blog }: { blog: Blog }) {
     >
       <div className="flex items-center gap-2 text-xs uppercase tracking-wide text-muted">
         <span>{blog.publication}</span>
-        {formatDate(blog.date) && (
+        {date && (
           <>
             <span aria-hidden="true">·</span>
-            <span>{formatDate(blog.date)}</span>
+            <span>{date}</span>
           </>
         )}
       </div>

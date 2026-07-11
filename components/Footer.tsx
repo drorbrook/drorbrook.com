@@ -1,7 +1,7 @@
 import { site } from "@/data/site";
 
 export function Footer() {
-  const year = 2026; // static; no runtime Date needed for a footer year
+  const year = new Date().getFullYear();
 
   return (
     <footer className="mt-24 border-t border-border">

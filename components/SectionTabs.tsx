@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { BlogCard } from "./BlogCard";
 import { TalkCard } from "./TalkCard";
 import { blogs } from "@/data/blogs";
@@ -20,13 +20,19 @@ type TabId = (typeof TABS)[number]["id"];
 
 const isTab = (v: string): v is TabId => TABS.some((t) => t.id === v);
 
+// Run before paint on the client (correcting the tab from a deep-link hash without
+// a visible flash), but fall back to useEffect on the server to avoid the SSR warning.
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
 export function SectionTabs() {
   const [active, setActive] = useState<TabId>("about");
   const ref = useRef<HTMLDivElement>(null);
+  const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
   // Sync the active tab with the URL hash so nav links (/#talks), deep-links,
   // and bookmarks work. Scroll the tabs into view when the hash changes.
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const apply = (scroll: boolean) => {
       const h = window.location.hash.replace("#", "");
       if (isTab(h)) {
@@ -45,6 +51,20 @@ export function SectionTabs() {
     history.replaceState(null, "", `#${id}`);
   };
 
+  // Arrow / Home / End keyboard navigation, per the ARIA tabs pattern.
+  const onKeyDown = (e: React.KeyboardEvent, index: number) => {
+    const last = TABS.length - 1;
+    let next: number | null = null;
+    if (e.key === "ArrowRight") next = index === last ? 0 : index + 1;
+    else if (e.key === "ArrowLeft") next = index === 0 ? last : index - 1;
+    else if (e.key === "Home") next = 0;
+    else if (e.key === "End") next = last;
+    if (next === null) return;
+    e.preventDefault();
+    select(TABS[next].id);
+    tabRefs.current[next]?.focus();
+  };
+
   return (
     <div ref={ref} id="sections" className="scroll-mt-20">
       {/* Tabs sit at the top, before any content. */}
@@ -53,14 +73,19 @@ export function SectionTabs() {
         aria-label="Sections"
         className="flex flex-wrap gap-1 border-b border-border"
       >
-        {TABS.map((t) => (
+        {TABS.map((t, i) => (
           <button
             key={t.id}
+            ref={(el) => {
+              tabRefs.current[i] = el;
+            }}
             role="tab"
             id={`tab-${t.id}`}
             aria-selected={active === t.id}
             aria-controls={`panel-${t.id}`}
+            tabIndex={active === t.id ? 0 : -1}
             onClick={() => select(t.id)}
+            onKeyDown={(e) => onKeyDown(e, i)}
             className={`-mb-px border-b-2 px-4 py-3 text-sm font-medium transition-colors ${
               active === t.id
                 ? "border-accent text-accent"
@@ -221,6 +246,7 @@ function Panel({
       role="tabpanel"
       id={`panel-${id}`}
       aria-labelledby={`tab-${id}`}
+      tabIndex={0}
       hidden={active !== id}
     >
       {children}
