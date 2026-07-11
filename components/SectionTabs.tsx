@@ -88,7 +88,7 @@ export function SectionTabs() {
             onKeyDown={(e) => onKeyDown(e, i)}
             className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
               active === t.id
-                ? "btn-gradient text-white shadow"
+                ? "btn-gradient"
                 : "text-muted hover:text-fg"
             }`}
           >
@@ -103,10 +103,7 @@ export function SectionTabs() {
           <div className="flex flex-col gap-10 sm:flex-row sm:items-center">
             <Avatar />
             <div>
-              <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
-                {"// "}
-                {site.tagline}
-              </p>
+              <p className="eyebrow">{site.tagline}</p>
               <h1 className="mt-4 max-w-3xl font-serif text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
                 Hi, I&apos;m <span className="text-gradient">{site.name}</span>.
               </h1>
@@ -135,7 +132,7 @@ export function SectionTabs() {
                 <button
                   type="button"
                   onClick={() => select("blogs")}
-                  className="inline-flex items-center justify-center rounded-full border border-border px-6 py-3 text-sm font-medium transition-colors hover:border-accent hover:text-accent"
+                  className="btn-outline"
                 >
                   Read my writing
                 </button>
@@ -154,9 +151,7 @@ export function SectionTabs() {
 
         <Panel id="podcast" active={active}>
           <div className="surface-card gradient-ring max-w-prose p-8">
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
-              {"// Podcast"}
-            </p>
+            <p className="eyebrow">Podcast</p>
             <h2 className="mt-2 font-serif text-2xl font-semibold">{podcast.name}</h2>
             <p className="mt-3 leading-relaxed text-fg">{podcast.description}</p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -172,7 +167,7 @@ export function SectionTabs() {
                 href={podcast.siteUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-full border border-border px-6 py-3 text-sm font-medium transition-colors hover:border-accent hover:text-accent"
+                className="btn-outline"
               >
                 Visit the podcast site
               </a>
@@ -213,9 +208,7 @@ export function SectionTabs() {
             </div>
 
             <div className="surface-card gradient-ring mt-10 p-8">
-              <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
-                {"// Mentoring"}
-              </p>
+              <p className="eyebrow">Mentoring</p>
               <h2 className="mt-2 font-serif text-2xl font-semibold">
                 The first call is on me
               </h2>
@@ -246,7 +239,7 @@ function Avatar() {
       {/* Glowing gradient ring behind the avatar. */}
       <div
         aria-hidden="true"
-        className="absolute -inset-1 rounded-full bg-gradient-to-br from-accent to-accent-2 opacity-70 blur-md"
+        className="absolute -inset-1 rounded-full bg-[image:var(--gradient-accent)] opacity-70 blur-md"
       />
       {site.photo ? (
         // eslint-disable-next-line @next/next/no-img-element
