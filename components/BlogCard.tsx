@@ -23,9 +23,9 @@ export function BlogCard({ blog }: { blog: Blog }) {
       href={blog.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex flex-col rounded-lg border border-border bg-surface p-5 transition-colors hover:border-accent"
+      className="surface-card gradient-ring group flex flex-col overflow-hidden p-6"
     >
-      <div className="flex items-center gap-2 text-xs uppercase tracking-wide text-muted">
+      <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wide text-muted">
         <span>{blog.publication}</span>
         {date && (
           <>
@@ -34,11 +34,16 @@ export function BlogCard({ blog }: { blog: Blog }) {
           </>
         )}
       </div>
-      <h3 className="mt-2 font-serif text-lg font-semibold leading-snug group-hover:text-accent">
+      <h3 className="mt-2 font-serif text-lg font-semibold leading-snug transition-colors group-hover:text-accent">
         {blog.title}
       </h3>
       <p className="mt-2 text-sm text-muted">{blog.description}</p>
-      <span className="mt-4 text-sm font-medium text-accent">Read →</span>
+      <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent">
+        Read
+        <span className="transition-transform group-hover:translate-x-0.5" aria-hidden="true">
+          →
+        </span>
+      </span>
     </a>
   );
 }
