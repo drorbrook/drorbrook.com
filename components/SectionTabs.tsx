@@ -162,7 +162,7 @@ export function SectionTabs() {
         <Panel id="talks" active={active}>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {talks.map((talk) => (
-              <TalkCard key={talk.title} talk={talk} />
+              <TalkCard key={talk.url} talk={talk} />
             ))}
           </div>
         </Panel>
