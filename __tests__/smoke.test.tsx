@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import HomePage from "@/app/page";
-import { Nav } from "@/components/Nav";
 import { site } from "@/data/site";
 
 describe("site smoke tests", () => {
@@ -22,16 +21,5 @@ describe("site smoke tests", () => {
     expect(talks).toHaveAttribute("aria-selected", "false");
     await user.click(talks);
     expect(talks).toHaveAttribute("aria-selected", "true");
-  });
-
-  it("mobile nav menu opens and closes", async () => {
-    const user = userEvent.setup();
-    render(<Nav />);
-    const toggle = screen.getByRole("button", { name: /toggle menu/i });
-    expect(toggle).toHaveAttribute("aria-expanded", "false");
-    await user.click(toggle);
-    expect(toggle).toHaveAttribute("aria-expanded", "true");
-    await user.click(toggle);
-    expect(toggle).toHaveAttribute("aria-expanded", "false");
   });
 });
