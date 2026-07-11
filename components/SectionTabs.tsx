@@ -67,11 +67,11 @@ export function SectionTabs() {
 
   return (
     <div ref={ref} id="sections" className="scroll-mt-20">
-      {/* Tabs sit at the top, before any content. */}
+      {/* Tabs sit at the top as a segmented pill control, before any content. */}
       <div
         role="tablist"
         aria-label="Sections"
-        className="flex flex-wrap gap-1 border-b border-border"
+        className="inline-flex flex-wrap gap-1 rounded-full border border-border bg-surface/60 p-1 backdrop-blur-sm"
       >
         {TABS.map((t, i) => (
           <button
@@ -86,10 +86,10 @@ export function SectionTabs() {
             tabIndex={active === t.id ? 0 : -1}
             onClick={() => select(t.id)}
             onKeyDown={(e) => onKeyDown(e, i)}
-            className={`-mb-px border-b-2 px-4 py-3 text-sm font-medium transition-colors ${
+            className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
               active === t.id
-                ? "border-accent text-accent"
-                : "border-transparent text-muted hover:text-fg"
+                ? "btn-gradient text-white shadow"
+                : "text-muted hover:text-fg"
             }`}
           >
             {t.label}
@@ -100,16 +100,17 @@ export function SectionTabs() {
       <div className="py-10 sm:py-14">
         {/* About — the hero / intro, now the default tab. */}
         <Panel id="about" active={active}>
-          <div className="flex flex-col gap-8 sm:flex-row sm:items-center">
+          <div className="flex flex-col gap-10 sm:flex-row sm:items-center">
             <Avatar />
             <div>
-              <p className="text-sm font-medium uppercase tracking-widest text-accent">
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+                {"// "}
                 {site.tagline}
               </p>
-              <h1 className="mt-3 max-w-3xl font-serif text-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl">
-                Hi, I&apos;m {site.name}.
+              <h1 className="mt-4 max-w-3xl font-serif text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
+                Hi, I&apos;m <span className="text-gradient">{site.name}</span>.
               </h1>
-              <div className="mt-5 max-w-prose space-y-4 text-lg leading-relaxed text-muted">
+              <div className="mt-6 max-w-prose space-y-4 text-lg leading-relaxed text-muted">
                 <p>
                   I&apos;m an engineering manager who has spent my career building and
                   growing engineering teams. I care about the craft of leadership as much
@@ -121,6 +122,23 @@ export function SectionTabs() {
                   engineers and managers growing into leadership. The first mentoring call
                   is on me.
                 </p>
+              </div>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <a
+                  href={site.schedulerUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary"
+                >
+                  Book a free mentoring call
+                </a>
+                <button
+                  type="button"
+                  onClick={() => select("blogs")}
+                  className="inline-flex items-center justify-center rounded-full border border-border px-6 py-3 text-sm font-medium transition-colors hover:border-accent hover:text-accent"
+                >
+                  Read my writing
+                </button>
               </div>
             </div>
           </div>
@@ -135,15 +153,18 @@ export function SectionTabs() {
         </Panel>
 
         <Panel id="podcast" active={active}>
-          <div className="max-w-prose">
-            <h2 className="font-serif text-2xl font-semibold">{podcast.name}</h2>
+          <div className="surface-card gradient-ring max-w-prose p-8">
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+              {"// Podcast"}
+            </p>
+            <h2 className="mt-2 font-serif text-2xl font-semibold">{podcast.name}</h2>
             <p className="mt-3 leading-relaxed text-fg">{podcast.description}</p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <a
                 href={podcast.spotifyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90"
+                className="btn-primary"
               >
                 Listen on Spotify
               </a>
@@ -177,7 +198,7 @@ export function SectionTabs() {
                 href={site.socials.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-accent underline underline-offset-4"
+                className="font-medium text-accent underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent"
               >
                 LinkedIn
               </a>
@@ -185,14 +206,19 @@ export function SectionTabs() {
                 href={site.socials.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-accent underline underline-offset-4"
+                className="font-medium text-accent underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent"
               >
                 GitHub
               </a>
             </div>
 
-            <div className="mt-10 rounded-lg border border-border bg-surface p-6">
-              <h2 className="font-serif text-2xl font-semibold">Mentoring</h2>
+            <div className="surface-card gradient-ring mt-10 p-8">
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+                {"// Mentoring"}
+              </p>
+              <h2 className="mt-2 font-serif text-2xl font-semibold">
+                The first call is on me
+              </h2>
               <p className="mt-3 leading-relaxed text-fg">
                 I mentor engineers and managers growing into or through leadership roles.
                 The first call is free — a chance to talk through where you are and whether
@@ -202,7 +228,7 @@ export function SectionTabs() {
                 href={site.schedulerUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-5 inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90"
+                className="btn-primary mt-5"
               >
                 Book a free first call
               </a>
@@ -215,19 +241,25 @@ export function SectionTabs() {
 }
 
 function Avatar() {
-  if (site.photo) {
-    return (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img
-        src={site.photo}
-        alt={site.name}
-        className="h-32 w-32 shrink-0 rounded-full border border-border object-cover sm:h-40 sm:w-40"
-      />
-    );
-  }
   return (
-    <div className="flex h-32 w-32 shrink-0 items-center justify-center rounded-full border border-border bg-surface font-serif text-3xl text-muted sm:h-40 sm:w-40">
-      DB
+    <div className="relative shrink-0">
+      {/* Glowing gradient ring behind the avatar. */}
+      <div
+        aria-hidden="true"
+        className="absolute -inset-1 rounded-full bg-gradient-to-br from-accent to-accent-2 opacity-70 blur-md"
+      />
+      {site.photo ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={site.photo}
+          alt={site.name}
+          className="relative h-36 w-36 rounded-full border-2 border-surface object-cover sm:h-44 sm:w-44"
+        />
+      ) : (
+        <div className="relative flex h-36 w-36 items-center justify-center rounded-full border-2 border-surface bg-surface font-serif text-3xl text-muted sm:h-44 sm:w-44">
+          DB
+        </div>
+      )}
     </div>
   );
 }
@@ -248,6 +280,7 @@ function Panel({
       aria-labelledby={`tab-${id}`}
       tabIndex={0}
       hidden={active !== id}
+      className={active === id ? "animate-fade-up" : undefined}
     >
       {children}
     </div>

@@ -8,9 +8,14 @@ export function Nav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-bg/85 backdrop-blur">
+    <header className="sticky top-0 z-40 bg-bg/70 backdrop-blur-xl">
+      {/* Gradient hairline under the nav (replaces a flat border). */}
+      <div aria-hidden="true" className="hairline bottom-0" />
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4">
-        <a href="/#about" className="font-serif text-lg font-semibold tracking-tight">
+        <a
+          href="/#about"
+          className="text-gradient font-serif text-lg font-semibold tracking-tight"
+        >
           Dror Brook
         </a>
 
@@ -19,7 +24,10 @@ export function Nav() {
           <ul className="flex items-center gap-6 text-sm">
             {navLinks.map((l) => (
               <li key={l.href}>
-                <a href={l.href} className="text-muted transition-colors hover:text-accent">
+                <a
+                  href={l.href}
+                  className="link-underline text-muted transition-colors hover:text-fg"
+                >
                   {l.label}
                 </a>
               </li>

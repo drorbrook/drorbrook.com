@@ -3,23 +3,25 @@
 @tailwind utilities;
 
 :root {
-  /* Minimal editorial — light. Neutral paper background, ink text, navy accent. */
-  --color-bg: 250 249 246;
+  /* Aurora — light. Cool paper background, ink text, indigo→violet accent pair. */
+  --color-bg: 250 250 252;
   --color-surface: 255 255 255;
-  --color-fg: 26 26 28;
-  --color-muted: 90 92 100;
-  --color-border: 224 222 216;
-  --color-accent: 30 58 95;
+  --color-fg: 20 20 28;
+  --color-muted: 90 92 105;
+  --color-border: 226 226 235;
+  --color-accent: 99 91 255;
+  --color-accent-2: 168 85 247;
 }
 
 .dark {
-  /* Minimal editorial — dark. */
-  --color-bg: 18 18 20;
-  --color-surface: 28 28 32;
-  --color-fg: 240 239 235;
-  --color-muted: 160 162 170;
-  --color-border: 48 48 54;
-  --color-accent: 138 170 214;
+  /* Aurora — dark. */
+  --color-bg: 12 12 18;
+  --color-surface: 22 22 30;
+  --color-fg: 240 240 248;
+  --color-muted: 155 158 175;
+  --color-border: 40 40 52;
+  --color-accent: 139 130 255;
+  --color-accent-2: 192 132 252;
 }
 
 html {
@@ -31,6 +33,110 @@ body {
   color: rgb(var(--color-fg));
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* Fixed decorative background layers (see app/layout.tsx). */
+.bg-aurora {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  background:
+    radial-gradient(40rem 30rem at 15% -10%, rgb(var(--color-accent) / 0.2), transparent 60%),
+    radial-gradient(35rem 28rem at 90% 5%, rgb(var(--color-accent-2) / 0.16), transparent 60%),
+    radial-gradient(30rem 30rem at 60% 100%, rgb(var(--color-accent) / 0.1), transparent 60%);
+}
+
+/* Subtle film grain via inline SVG turbulence. */
+.bg-grain {
+  position: fixed;
+  inset: 0;
+  z-index: -9;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@layer components {
+  /* Gradient text (hero headline, wordmark). Falls back to accent color. */
+  .text-gradient {
+    color: rgb(var(--color-accent));
+    background-image: linear-gradient(120deg, rgb(var(--color-accent)), rgb(var(--color-accent-2)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Elevated glass surface used by cards/CTAs. */
+  .surface-card {
+    @apply relative rounded-2xl border border-border bg-surface/70 backdrop-blur-sm transition duration-300 ease-out;
+  }
+  .surface-card:hover {
+    @apply -translate-y-1;
+    box-shadow: 0 12px 40px -12px rgb(var(--color-accent) / 0.25);
+    border-color: rgb(var(--color-accent) / 0.5);
+  }
+
+  /* Gradient hairline border on hover, drawn with a masked pseudo-element. */
+  .gradient-ring::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(120deg, rgb(var(--color-accent)), rgb(var(--color-accent-2)));
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  .gradient-ring:hover::before {
+    opacity: 1;
+  }
+
+  /* Primary gradient CTA with top inner highlight. */
+  .btn-gradient {
+    background-image: linear-gradient(120deg, rgb(var(--color-accent)), rgb(var(--color-accent-2)));
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.25),
+      0 8px 24px -8px rgb(var(--color-accent) / 0.5);
+  }
+
+  /* Full primary CTA button: gradient paint + pill layout + hover lift. */
+  .btn-primary {
+    @apply btn-gradient inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium text-white transition-transform;
+  }
+  .btn-primary:hover {
+    @apply -translate-y-0.5;
+  }
+
+  /* Decorative gradient hairline divider (nav bottom / footer top). */
+  .hairline {
+    @apply pointer-events-none absolute inset-x-0 h-px;
+    background-image: linear-gradient(to right, transparent, rgb(var(--color-accent) / 0.4), transparent);
+  }
+
+  /* Animated gradient underline for links. */
+  .link-underline {
+    @apply relative;
+  }
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 1px;
+    width: 0;
+    background: linear-gradient(to right, rgb(var(--color-accent)), rgb(var(--color-accent-2)));
+    transition: width 0.3s ease;
+  }
+  .link-underline:hover::after {
+    width: 100%;
+  }
 }
 
 /* Fixed-ratio wrapper for video embeds to prevent layout shift (CLS). */
@@ -47,4 +153,19 @@ body {
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+/* Respect users who prefer reduced motion: kill transitions/animations. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    /* Also drop decorative hover/lift transforms so nothing jumps. */
+    transform: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }

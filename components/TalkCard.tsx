@@ -2,7 +2,7 @@ import type { Talk } from "@/data/types";
 
 export function TalkCard({ talk }: { talk: Talk }) {
   return (
-    <article className="flex flex-col overflow-hidden rounded-lg border border-border bg-surface">
+    <article className="surface-card gradient-ring flex flex-col overflow-hidden">
       {talk.embedUrl ? (
         // Fixed 16:9 wrapper reserves space so the iframe doesn't cause layout shift.
         <div className="embed-16x9">
@@ -26,7 +26,7 @@ export function TalkCard({ talk }: { talk: Talk }) {
         </a>
       )}
       <div className="p-5">
-        <p className="text-xs uppercase tracking-wide text-muted">
+        <p className="font-mono text-xs uppercase tracking-wide text-muted">
           {talk.platform}
         </p>
         <h3 className="mt-2 font-serif text-lg font-semibold leading-snug">
