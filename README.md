@@ -31,7 +31,3 @@ npm run dev     # local dev server
 npm test        # run test suite
 npm run build   # production build
 ```
-
-## Design spec
-
-See [`docs/superpowers/specs/`](docs/superpowers/specs/).
