@@ -102,7 +102,7 @@ export function SectionTabs() {
         <Panel id="about" active={active}>
           <div className="flex flex-col gap-10 sm:flex-row sm:items-center">
             <Avatar />
-            <div className="animate-fade-up">
+            <div>
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
                 {"// "}
                 {site.tagline}
@@ -128,7 +128,7 @@ export function SectionTabs() {
                   href={site.schedulerUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-gradient inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium text-white transition-transform hover:-translate-y-0.5"
+                  className="btn-primary"
                 >
                   Book a free mentoring call
                 </a>
@@ -164,7 +164,7 @@ export function SectionTabs() {
                 href={podcast.spotifyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-gradient inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium text-white transition-transform hover:-translate-y-0.5"
+                className="btn-primary"
               >
                 Listen on Spotify
               </a>
@@ -198,7 +198,7 @@ export function SectionTabs() {
                 href={site.socials.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="link-underline font-medium text-accent"
+                className="font-medium text-accent underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent"
               >
                 LinkedIn
               </a>
@@ -206,7 +206,7 @@ export function SectionTabs() {
                 href={site.socials.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="link-underline font-medium text-accent"
+                className="font-medium text-accent underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent"
               >
                 GitHub
               </a>
@@ -228,7 +228,7 @@ export function SectionTabs() {
                 href={site.schedulerUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-gradient mt-5 inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium text-white transition-transform hover:-translate-y-0.5"
+                className="btn-primary mt-5"
               >
                 Book a free first call
               </a>

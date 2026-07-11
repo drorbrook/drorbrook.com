@@ -106,6 +106,20 @@ body {
       0 8px 24px -8px rgb(var(--color-accent) / 0.5);
   }
 
+  /* Full primary CTA button: gradient paint + pill layout + hover lift. */
+  .btn-primary {
+    @apply btn-gradient inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium text-white transition-transform;
+  }
+  .btn-primary:hover {
+    @apply -translate-y-0.5;
+  }
+
+  /* Decorative gradient hairline divider (nav bottom / footer top). */
+  .hairline {
+    @apply pointer-events-none absolute inset-x-0 h-px;
+    background-image: linear-gradient(to right, transparent, rgb(var(--color-accent) / 0.4), transparent);
+  }
+
   /* Animated gradient underline for links. */
   .link-underline {
     @apply relative;
@@ -148,6 +162,8 @@ body {
   *::after {
     animation: none !important;
     transition: none !important;
+    /* Also drop decorative hover/lift transforms so nothing jumps. */
+    transform: none !important;
   }
   html {
     scroll-behavior: auto;

@@ -8,12 +8,9 @@ export function Nav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-bg/70 backdrop-blur-xl">
-      {/* Gradient hairline under the nav. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent"
-      />
+    <header className="sticky top-0 z-40 bg-bg/70 backdrop-blur-xl">
+      {/* Gradient hairline under the nav (replaces a flat border). */}
+      <div aria-hidden="true" className="hairline bottom-0" />
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4">
         <a
           href="/#about"
