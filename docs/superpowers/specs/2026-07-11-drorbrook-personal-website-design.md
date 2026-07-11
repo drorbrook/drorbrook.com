@@ -12,6 +12,8 @@ mentor. The site is a hub that introduces Dror and links out to his content acro
 
 - **Audience:** engineering managers, mentees, professional network (international).
 - **Language:** English only, left-to-right (LTR).
+- **Mobile-first:** the site must look and read well on mobile; responsive layouts are a
+  first-class requirement, not an afterthought.
 - **No backend, no database.** All content is either static, typed data files committed to the
   repo, or links/embeds to external services.
 
@@ -28,18 +30,17 @@ mentor. The site is a hub that introduces Dror and links out to his content acro
 
 ## 3. Pages & Navigation
 
-Top nav (and footer socials on every page): **Home · About · Writing · Podcast · Talks ·
-Mentoring · Contact**
+Top nav (and footer socials on every page): **Home · About · Blogs · Podcast · Talks ·
+Contact**
 
 | Route        | Purpose |
 |--------------|---------|
 | `/`          | Home — hero (name, one-line pitch, photo), quick links out to each section |
 | `/about`     | Bio, engineering-management background, career, photo |
-| `/writing`   | Curated cards linking to external posts (Medium, giffgaff, Monzo, …) |
+| `/blogs`     | Curated cards linking to external posts (Medium, giffgaff, Monzo, …) |
 | `/podcast`   | Beyond the Sprint — description, Spotify link, link to the podcast site |
 | `/talks`     | Video lectures (Tech Gym, …) — embedded or thumbnail-linked |
-| `/mentoring` | Mentoring pitch + embedded external scheduler (Calendly / Cal.com) |
-| `/contact`   | LinkedIn + GitHub links + short "get in touch" prompt |
+| `/contact`   | Get in touch + mentorship offer. Explains that Dror offers mentorship and invites a **free first call**, booked through an external scheduler (Calendly / Cal.com). Also lists LinkedIn + GitHub. |
 
 Footer (all pages): LinkedIn + GitHub.
 
@@ -50,7 +51,7 @@ article/talk means adding one entry to a file.
 
 - `data/site.ts` — site config: name, tagline, socials (LinkedIn, GitHub), scheduler URL,
   contact email.
-- `data/writing.ts` — array of `{ title, publication, url, date, description }`.
+- `data/blogs.ts` — array of `{ title, publication, url, date, description }`.
 - `data/talks.ts` — array of `{ title, platform, url, thumbnail?, description }`.
 - `data/podcasts.ts` — Beyond the Sprint entry `{ name, description, spotifyUrl, siteUrl }`.
 
@@ -58,22 +59,38 @@ Each data type gets a TypeScript type/interface so entries are validated at buil
 
 ## 5. External Integrations
 
-- **Mentoring scheduler:** external service (Calendly or Cal.com), embedded via iframe or linked
-  as a CTA. No availability logic in this codebase.
+- **Mentorship scheduler:** on the Contact page, a "book a free first call" CTA points to an
+  external service (Calendly or Cal.com), embedded via iframe or linked. No availability logic in
+  this codebase.
 - **Podcast:** links to Spotify show and the Beyond the Sprint website.
 - **Talks:** video lectures embedded (e.g. YouTube/Vimeo iframe) or thumbnail-linked out.
 
 ## 6. Design Language
 
-Clean, professional, and personal. This is a distinct brand from the Beyond the Sprint podcast,
-so it gets its own visual identity rather than reusing the podcast's orange/teal palette. A
-specific palette and typography proposal will be presented during UI implementation.
+**Simple but stylish.** Clean, professional, and personal — with enough polish and personality to
+read as a strong personal brand, not a generic template. This is a distinct brand from the Beyond
+the Sprint podcast, so it gets its own visual identity rather than reusing the podcast's
+orange/teal palette.
+
+**Mobile-first and responsive.** Layouts are designed for small screens first and scale up;
+typography, spacing, nav (hamburger/compact on mobile), and cards must all read well on a phone.
+
+**Selected direction (approved 2026-07-11): Minimal editorial.**
+
+- **Personality:** generous whitespace, restrained and premium — reads like a thoughtful writer's
+  site, not a template.
+- **Typography:** Fraunces (serif) for headings, Inter (sans) for body — self-hosted via
+  `next/font/google`.
+- **Palette:** neutral paper/ink background with a single restrained navy accent, driven by CSS
+  variables so light and dark swap cleanly.
+- **Color mode:** light + dark toggle (`next-themes`), defaulting to the system preference.
 
 ## 7. Testing Strategy
 
 - Component/render tests (Jest + React Testing Library) for each page and shared components
   (nav, footer, cards).
 - Data files validated at build time via their TypeScript types.
+- Responsive behavior verified at mobile and desktop breakpoints (mobile nav, layout reflow).
 - CI runs `npm test` + `npm run build` on every PR.
 
 ## 8. Non-Goals (YAGNI)

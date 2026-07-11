@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh search *)",
+      "Bash(npm test)",
+      "mcp__linear-server__list_issues",
+      "mcp__monzo__ReadNotionDoc",
+      "mcp__monzo__SearchDocumentation"
+    ]
+  }
+}
