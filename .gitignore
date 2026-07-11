@@ -36,3 +36,6 @@ next-env.d.ts
 # editor
 .vscode/
 .idea/
+
+# claude code local settings (may contain machine-specific / private permissions)
+.claude/settings.local.json
