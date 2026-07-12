@@ -48,15 +48,21 @@ export function BookCallButton({
     };
   }, [resolvedTheme, embedJsUrl]);
 
+  // Rendered as a real link, not a button: Cal's embed intercepts the click
+  // (via the data-cal-* attributes) and opens the popup when its script has
+  // loaded. If the script is blocked or still loading, the href takes over and
+  // the visitor still reaches the booking page - the CTA never dead-ends.
   return (
-    <button
-      type="button"
+    <a
+      href={schedulerUrl}
+      target="_blank"
+      rel="noopener noreferrer"
       data-cal-link={calLink}
       data-cal-origin={origin}
       data-cal-config='{"layout":"month_view"}'
       className={className}
     >
       {children}
-    </button>
+    </a>
   );
 }
