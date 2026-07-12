@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  /* Aurora — light. Cool paper background, ink text, indigo→violet accent pair. */
+  /* Aurora - light. Cool paper background, ink text, indigo→violet accent pair. */
   --color-bg: 250 250 252;
   --color-surface: 255 255 255;
   --color-fg: 20 20 28;
@@ -12,7 +12,7 @@
   --color-accent: 99 91 255;
   --color-accent-2: 168 85 247;
 
-  /* Brand gradient (direction + stops) — resolves the accent vars lazily,
+  /* Brand gradient (direction + stops) - resolves the accent vars lazily,
      so it tracks the dark-mode overrides too. */
   --gradient-accent: linear-gradient(
     120deg,
@@ -22,7 +22,7 @@
 }
 
 .dark {
-  /* Aurora — dark. */
+  /* Aurora - dark. */
   --color-bg: 12 12 18;
   --color-surface: 22 22 30;
   --color-fg: 240 240 248;

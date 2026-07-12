@@ -7,7 +7,7 @@ export const blogs: Blog[] = [
     url: "https://medium.com/@drorbrook1/creating-impactful-products-through-iterative-development-96a9ffe28cd2",
     date: "2025-02-27",
     description:
-      "How iterative development — repeated cycles of planning, design, testing, and review — lets teams adapt quickly, gather early feedback, and ship faster than traditional approaches.",
+      "How iterative development - repeated cycles of planning, design, testing, and review - lets teams adapt quickly, gather early feedback, and ship faster than traditional approaches.",
   },
   {
     title: "5 Tips for Effective Onboarding of a New Team Member",
@@ -17,5 +17,5 @@ export const blogs: Blog[] = [
     description:
       "Five strategies for onboarding new team members well: handle the admin basics, set a structured plan, assign a peer buddy, delegate meaningful work gradually, and give consistent feedback.",
   },
-  // TODO: add further articles here — one object per post (spec §9).
+  // TODO: add further articles here - one object per post (spec §9).
 ];
