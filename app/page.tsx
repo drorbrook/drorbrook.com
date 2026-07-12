@@ -1,10 +1,10 @@
-import { SectionTabs } from "@/components/SectionTabs";
+import { SectionPanels } from "@/components/SectionPanels";
 
 export default function HomePage() {
   return (
     <div className="mx-auto max-w-5xl px-5 py-8 sm:py-10">
-      {/* Tabs at the top; the About tab (default) introduces Dror. */}
-      <SectionTabs />
+      {/* Section content; the active tab is chosen from the header (see Nav). */}
+      <SectionPanels />
     </div>
   );
 }
