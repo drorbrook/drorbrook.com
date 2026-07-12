@@ -7,7 +7,7 @@ export const talks: Talk[] = [
     url: "https://youtu.be/tSA6AjhPnGQ",
     embedUrl: "https://www.youtube-nocookie.com/embed/tSA6AjhPnGQ",
     description:
-      "A Tech Gym talk on taking ownership of your own career growth — how to steer your development rather than waiting to be steered.",
+      "A Tech Gym talk on taking ownership of your own career growth - how to steer your development rather than waiting to be steered.",
   },
-  // TODO: add further talks here — one object per video (spec §9).
+  // TODO: add further talks here - one object per video (spec §9).
 ];
