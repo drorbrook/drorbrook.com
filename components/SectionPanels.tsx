@@ -1,6 +1,7 @@
 "use client";
 
 import { BlogCard } from "./BlogCard";
+import { BookCallButton } from "./BookCallButton";
 import { TalkCard } from "./TalkCard";
 import { useTabs, type TabId } from "./TabsContext";
 import { blogs } from "@/data/blogs";
@@ -46,14 +47,12 @@ export function SectionPanels({
               <p>The first mentoring call is on me.</p>
             </div>
             <div className="mt-8">
-              <a
-                href={site.schedulerUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <BookCallButton
+                schedulerUrl={site.schedulerUrl}
                 className="btn-primary"
               >
                 Book a free mentoring call
-              </a>
+              </BookCallButton>
             </div>
           </div>
         </div>
@@ -231,14 +230,12 @@ export function SectionPanels({
               the first call is free - a chance to talk through where you are and whether
               I can help.
             </p>
-            <a
-              href={site.schedulerUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <BookCallButton
+              schedulerUrl={site.schedulerUrl}
               className="btn-primary mt-5"
             >
               Book a free first call
-            </a>
+            </BookCallButton>
           </div>
         </div>
       </Panel>

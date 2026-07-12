@@ -6,7 +6,8 @@ export const site: SiteConfig = {
   pitch:
     "I lead engineering teams and help managers grow. I write, talk, and host a podcast about the craft of engineering leadership.",
   photo: "/images/profile.jpeg",
-  schedulerUrl: "https://cal.com/drorbrook", // TODO: real Calendly / Cal.com link
+  // Cal.com scheduler (EU region); opened as a popup embed (see BookCallButton).
+  schedulerUrl: "https://cal.eu/dror-brook",
   companies: ["Monzo", "Meta", "Nvidia"],
   socials: {
     linkedin: "https://www.linkedin.com/in/dror-brook/",
