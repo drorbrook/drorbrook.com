@@ -18,7 +18,7 @@ export function SectionPanels({
 }: {
   latestEpisode: LatestEpisode | null;
 }) {
-  const { active, select } = useTabs();
+  const { active } = useTabs();
 
   return (
     <div id="sections" className="scroll-mt-24 py-10 sm:py-14">
@@ -44,7 +44,7 @@ export function SectionPanels({
                 is on me.
               </p>
             </div>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8">
               <a
                 href={site.schedulerUrl}
                 target="_blank"
@@ -53,13 +53,6 @@ export function SectionPanels({
               >
                 Book a free mentoring call
               </a>
-              <button
-                type="button"
-                onClick={() => select("blogs")}
-                className="btn-outline"
-              >
-                Read my writing
-              </button>
             </div>
           </div>
         </div>
@@ -88,7 +81,7 @@ export function SectionPanels({
               <p className="eyebrow">Podcast</p>
               <h2 className="mt-2 font-serif text-2xl font-semibold">{podcast.name}</h2>
               <p className="mt-1 text-sm text-muted">
-                Hosted by {site.name}
+                Hosted by {site.name} and Meir Renford
               </p>
             </div>
           </div>
@@ -112,9 +105,17 @@ export function SectionPanels({
           </div>
 
           {latestEpisode && (
-            <div className="mt-6 rounded-xl border border-border bg-bg/40 p-4">
+            // The RSS-driven latest episode, as a clickable card.
+            <a
+              href={latestEpisode.link || podcast.spotifyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group mt-6 block rounded-xl border border-border bg-bg/40 p-4 transition-colors hover:border-accent"
+            >
               <p className="eyebrow">Latest episode</p>
-              <p className="mt-1 font-medium text-fg">{latestEpisode.title}</p>
+              <p className="mt-1 font-medium text-fg transition-colors group-hover:text-accent">
+                {latestEpisode.title}
+              </p>
               <p className="mt-0.5 text-sm text-muted">
                 {[
                   latestEpisode.episodeNumber
@@ -126,49 +127,35 @@ export function SectionPanels({
                   .filter(Boolean)
                   .join(" · ")}
               </p>
-            </div>
+              <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-accent">
+                Listen
+                <span
+                  aria-hidden="true"
+                  className="transition-transform group-hover:translate-x-0.5"
+                >
+                  →
+                </span>
+              </span>
+            </a>
           )}
 
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-            {latestEpisode?.link ? (
-              <>
-                <a
-                  href={latestEpisode.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary"
-                >
-                  Listen to the latest episode
-                </a>
-                <a
-                  href={podcast.spotifyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-outline"
-                >
-                  All episodes
-                </a>
-              </>
-            ) : (
-              <>
-                <a
-                  href={podcast.spotifyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary"
-                >
-                  Listen on Spotify
-                </a>
-                <a
-                  href={podcast.siteUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-outline"
-                >
-                  Visit the podcast site
-                </a>
-              </>
-            )}
+            <a
+              href={podcast.spotifyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary"
+            >
+              {latestEpisode ? "All episodes on Spotify" : "Listen on Spotify"}
+            </a>
+            <a
+              href={podcast.siteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-outline"
+            >
+              Visit the podcast site
+            </a>
           </div>
         </div>
       </Panel>
