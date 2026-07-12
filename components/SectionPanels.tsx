@@ -34,7 +34,7 @@ export function SectionPanels({
             <div className="mt-6 max-w-prose space-y-4 text-lg leading-relaxed text-muted">
               <p>
                 I&apos;m an engineering manager at Monzo, one of the biggest neo-banks
-                in the UK (and soon globally). I stay close to my engineers and the work,
+                in the UK. I stay close to my engineers and the work,
                 and I care about the craft of leadership as much as the craft of code.
               </p>
               <p>
