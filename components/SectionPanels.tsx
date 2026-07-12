@@ -89,19 +89,20 @@ export function SectionPanels({
 
           <div className="mt-6 space-y-4 leading-relaxed text-fg">
             <p>
-              Beyond The Sprint is a podcast about the parts of engineering
-              leadership that don&apos;t fit on a sprint board - the messy, human
-              parts of the job.
+              Two engineering managers, one recurring question: what does this
+              job actually ask of you?
             </p>
             <p>
-              Each episode digs into a real challenge tech leads and engineering
-              managers actually face: hiring and firing, one-on-ones that go
-              sideways, underperformance, promotions, and the everyday judgment
-              calls no framework fully prepares you for.
+              Beyond The Sprint is a Hebrew-language podcast about the parts of
+              engineering leadership that don&apos;t fit on a sprint board. We
+              get into the calls that keep you up at night: letting someone go,
+              the promotion you couldn&apos;t push through, the one-on-one that
+              went nowhere. And the newer question none of us can dodge: what AI
+              is doing to how we build, lead, and think about our work.
             </p>
             <p>
-              No theoretical models, no leadership platitudes - just honest
-              conversations about what the work is really like.
+              No theory. Just honest conversations about what the work is really
+              like.
             </p>
           </div>
 
