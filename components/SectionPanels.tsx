@@ -225,9 +225,9 @@ export function SectionPanels({
             </h2>
             <p className="mt-3 leading-relaxed text-fg">
               I mentor engineers and managers growing into or through leadership roles.
-              If you&apos;re growing into leadership, stepping up as a manager, or facing
-              a hard call at work, the first call is free - a chance to talk through where
-              you are and whether I can help.
+              Whether you&apos;re stepping up as a manager or facing a hard call at work,
+              the first call is free - a chance to talk through where you are and whether
+              I can help.
             </p>
             <a
               href={site.schedulerUrl}
