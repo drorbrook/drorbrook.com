@@ -15,7 +15,7 @@ export function SectionPanels() {
 
   return (
     <div id="sections" className="scroll-mt-24 py-10 sm:py-14">
-      {/* About — the hero / intro, the default tab. */}
+      {/* About - the hero / intro, the default tab. */}
       <Panel id="about" active={active}>
         <div className="flex flex-col gap-10 sm:flex-row sm:items-center">
           <Avatar />
@@ -102,10 +102,7 @@ export function SectionPanels() {
 
       <Panel id="contact" active={active}>
         <div className="max-w-prose">
-          <p className="leading-relaxed text-fg">
-            The best way to reach me is on LinkedIn.
-          </p>
-          <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
             <a
               href={site.socials.linkedin}
               target="_blank"
@@ -113,14 +110,6 @@ export function SectionPanels() {
               className="font-medium text-accent underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent"
             >
               LinkedIn
-            </a>
-            <a
-              href={site.socials.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-accent underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent"
-            >
-              GitHub
             </a>
           </div>
 
@@ -131,7 +120,7 @@ export function SectionPanels() {
             </h2>
             <p className="mt-3 leading-relaxed text-fg">
               I mentor engineers and managers growing into or through leadership roles.
-              The first call is free — a chance to talk through where you are and whether
+              The first call is free - a chance to talk through where you are and whether
               I can help.
             </p>
             <a
