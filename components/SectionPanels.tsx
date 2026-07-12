@@ -170,33 +170,53 @@ export function SectionPanels({
       </Panel>
 
       <Panel id="contact" active={active}>
-        <div className="max-w-prose">
+        <div className="max-w-2xl">
           <p className="eyebrow">Get in touch</p>
-          <p className="mt-3 leading-relaxed text-fg">
-            I&apos;ve spent my career leading engineering teams at some of tech&apos;s
-            most demanding companies. If you&apos;re growing into leadership,
-            stepping up as a manager, or facing a hard call at work, I&apos;m happy
-            to talk it through.
-          </p>
-          <div className="mt-4 flex flex-wrap gap-2">
+          <div className="mt-4 flex flex-col gap-6 sm:flex-row sm:items-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/my_family.jpeg"
+              alt="Dror Brook with his family"
+              className="h-44 w-44 shrink-0 rounded-2xl border border-border object-cover shadow-lg sm:h-52 sm:w-52"
+            />
+            <div className="space-y-3 leading-relaxed text-fg">
+              <p>
+                I&apos;ve spent my career leading engineering teams at some of
+                tech&apos;s most demanding companies. I am always happy to meet
+                new people - reach out to me on{" "}
+                <a
+                  href={site.socials.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-accent underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent"
+                >
+                  LinkedIn
+                </a>
+                .
+              </p>
+              <p>
+                Outside of work, most of my time goes to my family - they keep me
+                grounded and are a good reminder of why the balance we talk about
+                as managers actually matters.
+              </p>
+            </div>
+          </div>
+          <div className="mt-5 flex flex-wrap gap-2">
             {site.companies.map((company) => (
               <span
                 key={company}
-                className="inline-flex items-center rounded-full border border-border bg-surface/70 px-3 py-1 font-mono text-xs tracking-wide text-muted"
+                className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface/70 px-3 py-1 font-mono text-xs tracking-wide text-muted"
               >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`/images/logos/${company.toLowerCase()}.svg`}
+                  alt=""
+                  aria-hidden="true"
+                  className="h-3.5 w-3.5"
+                />
                 {company}
               </span>
             ))}
-          </div>
-          <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm">
-            <a
-              href={site.socials.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-accent underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent"
-            >
-              LinkedIn
-            </a>
           </div>
 
           <div className="surface-card gradient-ring mt-10 p-8">
@@ -206,7 +226,8 @@ export function SectionPanels({
             </h2>
             <p className="mt-3 leading-relaxed text-fg">
               I mentor engineers and managers growing into or through leadership roles.
-              The first call is free - a chance to talk through where you are and whether
+              Whether you&apos;re stepping up as a manager or facing a hard call at work,
+              the first call is free - a chance to talk through where you are and whether
               I can help.
             </p>
             <a
