@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { TabsProvider } from "@/components/TabsContext";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { site } from "@/data/site";
@@ -79,9 +80,11 @@ export default function RootLayout({
           Skip to content
         </a>
         <ThemeProvider>
-          <Nav />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <TabsProvider>
+            <Nav />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </TabsProvider>
         </ThemeProvider>
       </body>
     </html>
