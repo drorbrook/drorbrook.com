@@ -33,16 +33,17 @@ export function SectionPanels({
             </h1>
             <div className="mt-6 max-w-prose space-y-4 text-lg leading-relaxed text-muted">
               <p>
-                I&apos;m an engineering manager who has spent my career building and
-                growing engineering teams. I care about the craft of leadership as much
-                as the craft of code.
+                I&apos;m an engineering manager at Monzo, one of the biggest neo-banks
+                in the UK (and soon globally). I stay close to my engineers and the work,
+                and I care about the craft of leadership as much as the craft of code.
               </p>
               <p>
                 I write and speak about engineering management, host the{" "}
-                <em className="text-fg">Beyond The Sprint</em> podcast, and mentor
-                engineers and managers growing into leadership. The first mentoring call
-                is on me.
+                <em className="text-fg">Beyond The Sprint</em> podcast alongside my great
+                friend Meir Renford, and mentor engineers and managers growing into
+                leadership.
               </p>
+              <p>The first mentoring call is on me.</p>
             </div>
             <div className="mt-8">
               <a
