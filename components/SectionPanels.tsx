@@ -7,10 +7,17 @@ import { blogs } from "@/data/blogs";
 import { talks } from "@/data/talks";
 import { podcast } from "@/data/podcasts";
 import { site } from "@/data/site";
+import type { LatestEpisode } from "@/lib/podcast";
 
 // The content for each section. The active tab is driven by the header's
 // TabList through TabsContext; this component just shows the matching panel.
-export function SectionPanels() {
+// `latestEpisode` is fetched server-side (see app/page.tsx); null if the feed
+// was unreachable, in which case the podcast panel uses its static links.
+export function SectionPanels({
+  latestEpisode,
+}: {
+  latestEpisode: LatestEpisode | null;
+}) {
   const { active, select } = useTabs();
 
   return (
@@ -68,26 +75,100 @@ export function SectionPanels() {
 
       <Panel id="podcast" active={active}>
         <div className="surface-card gradient-ring max-w-prose p-8">
-          <p className="eyebrow">Podcast</p>
-          <h2 className="mt-2 font-serif text-2xl font-semibold">{podcast.name}</h2>
-          <p className="mt-3 leading-relaxed text-fg">{podcast.description}</p>
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
+            {podcast.coverImage && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={podcast.coverImage}
+                alt={`${podcast.name} cover art`}
+                className="h-28 w-28 shrink-0 rounded-2xl border border-border object-cover shadow-lg sm:h-32 sm:w-32"
+              />
+            )}
+            <div>
+              <p className="eyebrow">Podcast</p>
+              <h2 className="mt-2 font-serif text-2xl font-semibold">{podcast.name}</h2>
+              <p className="mt-1 text-sm text-muted">
+                Hosted by {site.name}
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-6 space-y-4 leading-relaxed text-fg">
+            <p>
+              Beyond The Sprint is a podcast about the parts of engineering
+              leadership that don&apos;t fit on a sprint board - the messy, human
+              parts of the job.
+            </p>
+            <p>
+              Each episode digs into a real challenge tech leads and engineering
+              managers actually face: hiring and firing, one-on-ones that go
+              sideways, underperformance, promotions, and the everyday judgment
+              calls no framework fully prepares you for.
+            </p>
+            <p>
+              No theoretical models, no leadership platitudes - just honest
+              conversations about what the work is really like.
+            </p>
+          </div>
+
+          {latestEpisode && (
+            <div className="mt-6 rounded-xl border border-border bg-bg/40 p-4">
+              <p className="eyebrow">Latest episode</p>
+              <p className="mt-1 font-medium text-fg">{latestEpisode.title}</p>
+              <p className="mt-0.5 text-sm text-muted">
+                {[
+                  latestEpisode.episodeNumber
+                    ? `Episode ${latestEpisode.episodeNumber}`
+                    : null,
+                  latestEpisode.durationLabel,
+                  latestEpisode.dateLabel,
+                ]
+                  .filter(Boolean)
+                  .join(" · ")}
+              </p>
+            </div>
+          )}
+
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-            <a
-              href={podcast.spotifyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary"
-            >
-              Listen on Spotify
-            </a>
-            <a
-              href={podcast.siteUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-outline"
-            >
-              Visit the podcast site
-            </a>
+            {latestEpisode?.link ? (
+              <>
+                <a
+                  href={latestEpisode.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary"
+                >
+                  Listen to the latest episode
+                </a>
+                <a
+                  href={podcast.spotifyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline"
+                >
+                  All episodes
+                </a>
+              </>
+            ) : (
+              <>
+                <a
+                  href={podcast.spotifyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary"
+                >
+                  Listen on Spotify
+                </a>
+                <a
+                  href={podcast.siteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline"
+                >
+                  Visit the podcast site
+                </a>
+              </>
+            )}
           </div>
         </div>
       </Panel>
@@ -102,7 +183,24 @@ export function SectionPanels() {
 
       <Panel id="contact" active={active}>
         <div className="max-w-prose">
-          <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+          <p className="eyebrow">Get in touch</p>
+          <p className="mt-3 leading-relaxed text-fg">
+            I&apos;ve spent my career leading engineering teams at some of tech&apos;s
+            most demanding companies. If you&apos;re growing into leadership,
+            stepping up as a manager, or facing a hard call at work, I&apos;m happy
+            to talk it through.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {site.companies.map((company) => (
+              <span
+                key={company}
+                className="inline-flex items-center rounded-full border border-border bg-surface/70 px-3 py-1 font-mono text-xs tracking-wide text-muted"
+              >
+                {company}
+              </span>
+            ))}
+          </div>
+          <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm">
             <a
               href={site.socials.linkedin}
               target="_blank"

@@ -1,17 +1,20 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import HomePage from "@/app/page";
+import { SectionPanels } from "@/components/SectionPanels";
 import { TabsProvider } from "@/components/TabsContext";
 import { TabList } from "@/components/TabList";
 import { site } from "@/data/site";
 
 // The tab control (header) and the section panels (page) live in separate
 // trees wired together by TabsProvider, so mount both under the provider.
+// HomePage itself is an async server component (it fetches the podcast feed),
+// so we render SectionPanels directly with a null episode - the same thing the
+// page renders when the feed is unavailable.
 function App() {
   return (
     <TabsProvider>
       <TabList />
-      <HomePage />
+      <SectionPanels latestEpisode={null} />
     </TabsProvider>
   );
 }

@@ -7,6 +7,8 @@ export interface SiteConfig {
   photo?: string;
   /** External scheduler (Calendly / Cal.com) for the free mentoring call. */
   schedulerUrl: string;
+  /** Notable companies, most recent first, shown as chips on Contact. */
+  companies: string[];
   socials: {
     linkedin: string;
     github: string;
@@ -37,4 +39,6 @@ export interface Podcast {
   description: string;
   spotifyUrl: string;
   siteUrl: string;
+  /** Path to square cover art under /public, e.g. "/images/logo_podcast.png". Omit to hide. */
+  coverImage?: string;
 }
