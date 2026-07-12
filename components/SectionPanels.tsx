@@ -181,9 +181,8 @@ export function SectionPanels({
             <div className="space-y-3 leading-relaxed text-fg">
               <p>
                 I&apos;ve spent my career leading engineering teams at some of
-                tech&apos;s most demanding companies. If you&apos;re growing into
-                leadership, stepping up as a manager, or facing a hard call at work,
-                I&apos;m happy to talk it through - reach me on{" "}
+                tech&apos;s most demanding companies. I am always happy to meet
+                new people - reach out to me on{" "}
                 <a
                   href={site.socials.linkedin}
                   target="_blank"
@@ -226,8 +225,9 @@ export function SectionPanels({
             </h2>
             <p className="mt-3 leading-relaxed text-fg">
               I mentor engineers and managers growing into or through leadership roles.
-              The first call is free - a chance to talk through where you are and whether
-              I can help.
+              If you&apos;re growing into leadership, stepping up as a manager, or facing
+              a hard call at work, the first call is free - a chance to talk through where
+              you are and whether I can help.
             </p>
             <a
               href={site.schedulerUrl}
