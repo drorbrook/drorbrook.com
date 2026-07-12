@@ -151,7 +151,7 @@ export function SectionPanels() {
 
 function Avatar() {
   return (
-    <div className="relative shrink-0">
+    <div className="relative w-36 shrink-0 sm:w-44">
       {/* Glowing gradient ring behind the avatar. */}
       <div
         aria-hidden="true"
