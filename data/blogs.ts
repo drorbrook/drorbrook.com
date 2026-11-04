@@ -5,7 +5,7 @@ export const blogs: Blog[] = [
     title: "Meet Jarvis: My AI Assistant",
     publication: "Medium",
     url: "https://medium.com/@drorbrook1/meet-jarvis-my-ai-assistant-1c06b3d33ec9",
-    date: "",
+    date: "2026-10-25",
     description:
       "How I built a personal AI assistant with persistent context, focused skills, and automated workflows to support daily check-ins, team updates, and performance reviews.",
   },
