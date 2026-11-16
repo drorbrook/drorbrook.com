@@ -2,6 +2,14 @@ import type { Blog } from "./types";
 
 export const blogs: Blog[] = [
   {
+    title: "More Than Money Back: Reimagining Payment Disputes at Monzo",
+    publication: "Monzo",
+    url: "https://monzo.com/blog/more-than-money-back-reimagining-payment-disputes-at-monzo",
+    date: "2026-11-12",
+    description:
+      "How we rebuilt payment disputes at Monzo using machine learning, automation, and clearer customer journeys to reduce false claims and help customers get their money back faster.",
+  },
+  {
     title: "Meet Jarvis: My AI Assistant",
     publication: "Medium",
     url: "https://medium.com/@drorbrook1/meet-jarvis-my-ai-assistant-1c06b3d33ec9",
