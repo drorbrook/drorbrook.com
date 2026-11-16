@@ -6,7 +6,7 @@ It's a single page with a tab bar at the top. **About** is the default tab (a sh
 intro / hero); the rest link out to Dror's content:
 
 - **About** — intro and short bio
-- **Blogs** — curated links to posts on Medium
+- **Blogs** — curated links to posts on Medium and Monzo
 - **Podcast** — Beyond The Sprint (Spotify + podcast site)
 - **Talks** — video lectures (e.g. Tech Gym), embedded
 - **Contact** — LinkedIn & GitHub, plus a free first mentoring call via an external scheduler
